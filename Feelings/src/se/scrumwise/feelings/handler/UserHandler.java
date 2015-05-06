@@ -8,11 +8,12 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import se.scrumwise.feelings.entities.User;
 
 public class UserHandler {
 
-	private DatabaseHandler db = new DatabaseHandler();
+	private DatabaseHandler db = DatabaseHandler.getInstance();
 
 	public User find(String email) {
 

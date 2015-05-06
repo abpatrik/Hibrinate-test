@@ -1,8 +1,10 @@
 package se.scrumwise.feelings.entities;
+
+import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -14,7 +16,9 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Boolean authorised;
-
+	@OneToMany(mappedBy="user")
+	private Collection<Event> events;
+	
 	public User() {
 
 	}
@@ -67,11 +71,20 @@ public class User {
 	public void setAuthorised(Boolean authorised) {
 		this.authorised = authorised;
 	}
+	
+	public Collection<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Collection<Event> events) {
+		this.events = events;
+	}
 
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", authorised=" + authorised + "]";
+				+ ", lastname=" + lastname + ", authorised=" + authorised
+				+ ", events=" + events + "]";
 	}
 
 }

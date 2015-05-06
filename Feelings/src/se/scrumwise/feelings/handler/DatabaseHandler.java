@@ -2,24 +2,29 @@ package se.scrumwise.feelings.handler;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import se.scrumwise.feelings.entities.Event;
 import se.scrumwise.feelings.entities.User;
 
 public class DatabaseHandler {
 
 	private EntityManager manager;
+	static DatabaseHandler dbhandler;
 
-
-	public DatabaseHandler() {
+	private DatabaseHandler() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("feelings");
 		manager = factory.createEntityManager();
 
+	}
+	
+	public static DatabaseHandler getInstance(){
+
+		if (dbhandler == null)
+			dbhandler = new DatabaseHandler();
+		return dbhandler;
 	}
 
 	public User findUser(String email) {
@@ -27,15 +32,19 @@ public class DatabaseHandler {
 		manager.getTransaction().begin();
 		User user = manager.find(User.class, email);
 		manager.getTransaction().commit();
+
 		return user;
 	}
 
 	public boolean addUser(User user) {
 
+
 		try{
 			manager.getTransaction().begin();
 			manager.persist(user);
 			manager.getTransaction().commit();
+
+
 		}
 
 		catch(EntityExistsException e){
@@ -52,6 +61,7 @@ public class DatabaseHandler {
 		if (managedUser != null) {
 			manager.remove(managedUser);
 			manager.getTransaction().commit();
+
 		}
 	}
 
@@ -71,20 +81,21 @@ public class DatabaseHandler {
 	}
 	public boolean addEvent(Event event) {
 
+
 		manager.getTransaction().begin();
 		manager.persist(event);
 		manager.getTransaction().commit();
+
 		return true;
 	}
 
 	public boolean completeEvent(Event event){
 		return true;
-		
+
 	}
 
 	public ArrayList <Event> getEventList(String userId, Date from, Date to){
 
 		return null;
 	}
-
 }

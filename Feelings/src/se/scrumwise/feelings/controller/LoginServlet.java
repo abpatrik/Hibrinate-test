@@ -27,14 +27,15 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		User user = new User("j10patriks@gmail.com", "xxxxxx", "Patrik", "Svensson", false);
+		User user1 = new User("j10patriks@gmail.co", "xxxxxx", "Patrik", "Svensson", false);
 		userHandler.add(user);
+		userHandler.add(user1);
 		user = userHandler.find("j10patriks@gmail.com");
-		System.out.println(user);
+		
 
 		Event even1 = new Event(user, (byte)2, (byte)3, (byte)5, new Date(), new Date(), false);
 		
-		
-		DatabaseHandler db = new DatabaseHandler();
+		DatabaseHandler db = DatabaseHandler.getInstance();
 		db.addEvent(even1);
 		
 	
