@@ -24,15 +24,15 @@ public class Event {
 	@JoinColumn(name="User_ID")
 	private User user;
 	
-	private Byte motivation;
-	private Byte reaction;
-	private Byte result;
+	private byte motivation;
+	private byte reaction;
+	private byte result;
 	private Date timestampBefore;
 	private Date timestampAfter;
 	private Boolean isDone;
 
-	public Event(User user, Byte motivation, Byte reaction,
-			Byte result, Date timestampBefore, Date timestampAfter,
+	public Event(User user, byte motivation, byte reaction,
+			byte result, Date timestampBefore, Date timestampAfter,
 			Boolean isDone) {
 
 		this.user = user;
@@ -53,22 +53,22 @@ public class Event {
 		this.eventId = eventId;
 	}
 	
-	public Byte getMotivation() {
+	public byte getMotivation() {
 		return motivation;
 	}
-	public void setMotivation(Byte motivation) {
+	public void setMotivation(byte motivation) {
 		this.motivation = motivation;
 	}
-	public Byte getReaction() {
+	public byte getReaction() {
 		return reaction;
 	}
-	public void setReaction(Byte reaction) {
+	public void setReaction(byte reaction) {
 		this.reaction = reaction;
 	}
-	public Byte getResult() {
+	public byte getResult() {
 		return result;
 	}
-	public void setResult(Byte result) {
+	public void setResult(byte result) {
 		this.result = result;
 	}
 	public Date getTimestampBefore() {
