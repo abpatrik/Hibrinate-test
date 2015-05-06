@@ -1,4 +1,4 @@
-package se.scrumwise.feelings.services;
+package se.scrumwise.feelings.handler;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -6,12 +6,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import se.scrumwise.feelings.entities.User;
 
-public class UserService {
+public class DatabaseHandler {
 
 	private EntityManager manager;
 
 
-	public UserService() {
+	public DatabaseHandler() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("feelings");
 		manager = factory.createEntityManager();
 

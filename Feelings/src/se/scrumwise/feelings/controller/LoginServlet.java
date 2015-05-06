@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import se.scrumwise.feelings.entities.User;
-import se.scrumwise.feelings.services.UserService;
+import se.scrumwise.feelings.handler.DatabaseHandler;
 
 
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private UserService service;
+	private DatabaseHandler service;
        
    
 	public void init() throws ServletException {
-		service = new UserService();
+		service = new DatabaseHandler();
 	}
 
 	
