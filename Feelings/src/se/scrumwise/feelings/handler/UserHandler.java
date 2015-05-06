@@ -1,5 +1,4 @@
-package se.scrumwise.feelings.tools;
-
+package se.scrumwise.feelings.handler;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,29 +8,46 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import se.scrumwise.feelings.entities.User;
 
-public class Mailer {
+public class UserHandler {
 
-	public void sendAuthorisationLink(String to, String name){
+	private DatabaseHandler db = new DatabaseHandler();
 
-		String message = "Hi "+ name + "\nTo activate your account, follow this link:\n\n"
-				+ "http://localhost:8080/Feelings/register?auth=true&name="+ name +"&email=" + to
-				+ "\n\nWelcome to Feelings, we hope you will enjoy using the tool!\nBest regards, The Feelings Team";
-		Send(to, name, message);
+	public User find(String email) {
+
+		return db.find(email);
 	}
 
-	private boolean Send(String to, String name, String messageText){
+	public boolean add(User user) {
+
+		return db.add(user);
+	}
+	public void remove(User user) {
+
+		db.remove(user);
+	}
+
+	public void update(User user) {
+
+		db.update(user);
+	}
+	public boolean sendAuthorisationLink(String to, String name){
+
+		String messageText = "Hi "+ name + "\nTo activate your account, follow this link:\n\n"
+				+ "http://localhost:8080/Feelings/register?auth=true&name="+ name +"&email=" + to
+				+ "\n\nWelcome to Feelings, we hope you will enjoy using the tool!\nBest regards, The Feelings Team";
 
 		final String username = "p10tomcat@gmail.com";
 		final String password = "warszawa81";
+
 		Properties props = new Properties();
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 
-		Session session = Session.getInstance(props,
-				new javax.mail.Authenticator() {
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(username, password);
 			}
@@ -51,6 +67,7 @@ public class Mailer {
 		}
 
 		return true;
-
 	}
 }
+
+
