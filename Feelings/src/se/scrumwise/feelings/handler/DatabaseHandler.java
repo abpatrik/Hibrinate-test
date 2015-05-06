@@ -17,14 +17,6 @@ public class DatabaseHandler {
 
 	}
 
-	public User findAndCheckPassword(String email, String password) {
-		User user = find(email);
-		if(!user.getPassword().equals(password))
-			return null;
-
-		return user;
-	}
-
 	public User find(String email) {
 
 		manager.getTransaction().begin();
@@ -39,6 +31,7 @@ public class DatabaseHandler {
 			manager.persist(user);
 			manager.getTransaction().commit();
 		}
+
 		catch(EntityExistsException e){
 			return false;
 		}
@@ -55,5 +48,18 @@ public class DatabaseHandler {
 		}
 	}
 
+	public void update(User user) {
 
+		manager.getTransaction().begin();
+		User managedUser = manager.find(User.class, user.getEmail());
+
+		if (managedUser != null) {
+
+			managedUser.setAuthorised(user.getAuthorised());
+			managedUser.setFirstname(user.getFirstname());
+			managedUser.setLastname(user.getLastname());
+			managedUser.setPassword(user.getPassword());
+			manager.getTransaction().commit();
+		}
+	}
 }
