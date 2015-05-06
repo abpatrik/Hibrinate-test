@@ -55,17 +55,5 @@ public class DatabaseHandler {
 		}
 	}
 
-	public void update(User user) {
 
-		manager.getTransaction().begin();
-
-		User managedUser = manager.find(User.class, user.getEmail());
-
-		if (managedUser != null) 
-
-			managedUser.setEventList(user.getEventList());
-
-		manager.getTransaction().commit();
-
-	}
 }

@@ -2,13 +2,26 @@ package se.scrumwise.feelings.entities;
 
 import java.util.Date;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Embeddable
+
+@Entity
+@Table
 public class Event {
 
+	@Id
 	private Long eventId;
-	private String userIdEmail;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="User_ID")
+	private User user;
+	
 	private Byte motivation;
 	private Byte reaction;
 	private Byte result;
@@ -16,11 +29,11 @@ public class Event {
 	private Date timestampAfter;
 	private Boolean isDone;
 
-	public Event(String userIdEmail, Byte motivation, Byte reaction,
+	public Event(User user, Byte motivation, Byte reaction,
 			Byte result, Date timestampBefore, Date timestampAfter,
 			Boolean isDone) {
 
-		this.userIdEmail = userIdEmail;
+		this.user = user;
 		this.motivation = motivation;
 		this.reaction = reaction;
 		this.result = result;
@@ -37,12 +50,7 @@ public class Event {
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
 	}
-	public String getUserIdEmail() {
-		return userIdEmail;
-	}
-	public void setUserIdEmail(String userIdEmail) {
-		this.userIdEmail = userIdEmail;
-	}
+	
 	public Byte getMotivation() {
 		return motivation;
 	}
@@ -79,9 +87,11 @@ public class Event {
 	public void setIsDone(Boolean isDone) {
 		this.isDone = isDone;
 	}
+	
 	@Override
+	@Transient
 	public String toString() {
-		return "Event [eventId=" + eventId + ", userIdEmail=" + userIdEmail
+		return "Event [eventId=" + eventId + ", user=" + user
 				+ ", motivation=" + motivation + ", reaction=" + reaction
 				+ ", result=" + result + ", timestampBefore=" + timestampBefore
 				+ ", timestampAfter=" + timestampAfter + ", isDone=" + isDone + "]";

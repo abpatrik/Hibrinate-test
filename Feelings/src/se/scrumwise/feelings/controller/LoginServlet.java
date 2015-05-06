@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		User a = new User("Patrik", "xxxx");
+		User a = new User("j10patriks@gmail.com", "xxxxxx", "Patrik", "Svensson", false);
 		
 		service.add(a);
 		
