@@ -2,6 +2,7 @@ package se.scrumwise.feelings.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class Event {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long eventId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="User_ID")
 	private User user;
 	
@@ -91,7 +92,6 @@ public class Event {
 	}
 	
 	@Override
-	@Transient
 	public String toString() {
 		return "Event [eventId=" + eventId + ", user=" + user
 				+ ", motivation=" + motivation + ", reaction=" + reaction

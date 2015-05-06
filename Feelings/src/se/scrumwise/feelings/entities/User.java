@@ -69,7 +69,6 @@ public class User {
 	}
 
 	@Override
-	@Transient
 	public String toString() {
 		return "User [email=" + email + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", authorised=" + authorised + "]";

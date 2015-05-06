@@ -28,15 +28,15 @@ public class LoginServlet extends HttpServlet {
 
 		User user = new User("j10patriks@gmail.com", "xxxxxx", "Patrik", "Svensson", false);
 		userHandler.add(user);
-		System.out.println(userHandler.find("Patrik"));
-		
+		user = userHandler.find("j10patriks@gmail.com");
+		System.out.println(user);
+
 		Event even1 = new Event(user, (byte)2, (byte)3, (byte)5, new Date(), new Date(), false);
 		
 		
 		DatabaseHandler db = new DatabaseHandler();
 		db.addEvent(even1);
-		db.addEvent(even1);
-		db.addEvent(even1);
+		
 	
 	}
 
