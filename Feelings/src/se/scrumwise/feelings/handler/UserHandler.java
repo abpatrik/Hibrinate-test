@@ -16,21 +16,21 @@ public class UserHandler {
 
 	public User find(String email) {
 
-		return db.find(email);
+		return db.findUser(email);
 	}
 
 	public boolean add(User user) {
 
-		return db.add(user);
+		return db.addUser(user);
 	}
 	public void remove(User user) {
 
-		db.remove(user);
+		db.removeUser(user);
 	}
 
 	public void update(User user) {
 
-		db.update(user);
+		db.updateUser(user);
 	}
 	public boolean sendAuthorisationLink(String to, String name){
 
