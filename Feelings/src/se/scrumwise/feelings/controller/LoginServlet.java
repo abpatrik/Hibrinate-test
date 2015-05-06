@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import se.scrumwise.feelings.entities.Event;
 import se.scrumwise.feelings.entities.User;
+import se.scrumwise.feelings.handler.DatabaseHandler;
 import se.scrumwise.feelings.handler.UserHandler;
 
 public class LoginServlet extends HttpServlet {
@@ -30,9 +31,12 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(userHandler.find("Patrik"));
 		
 		Event even1 = new Event(user, (byte)2, (byte)3, (byte)5, new Date(), new Date(), false);
-		Event even2 = new Event(user, (byte)2, (byte)3, (byte)5, new Date(), new Date(), false);
-		Event even3 = new Event(user, (byte)2, (byte)3, (byte)5, new Date(), new Date(), false);
 		
+		
+		DatabaseHandler db = new DatabaseHandler();
+		db.addEvent(even1);
+		db.addEvent(even1);
+		db.addEvent(even1);
 	
 	}
 
