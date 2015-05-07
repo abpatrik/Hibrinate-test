@@ -81,7 +81,6 @@ public class DatabaseHandler {
 	}
 	public boolean addEvent(Event event) {
 
-
 		manager.getTransaction().begin();
 		manager.persist(event);
 		manager.getTransaction().commit();
@@ -90,12 +89,14 @@ public class DatabaseHandler {
 	}
 
 	public boolean completeEvent(Event event){
+		//TODO
+		
 		return true;
 
 	}
 
 	public ArrayList <Event> getEventList(String userId, Date from, Date to){
-
+		//TODO
 		return null;
 	}
 }
