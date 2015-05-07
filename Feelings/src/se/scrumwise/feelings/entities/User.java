@@ -19,7 +19,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Boolean authorised;
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
 	private Collection<Event> events;
 	
 	public User() {
