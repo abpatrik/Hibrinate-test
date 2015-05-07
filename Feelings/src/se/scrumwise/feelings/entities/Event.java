@@ -21,7 +21,7 @@ public class Event {
 	private Long eventId;
 	
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="User_ID")
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	private byte motivation;
@@ -93,7 +93,7 @@ public class Event {
 	
 	@Override
 	public String toString() {
-		return "Event [eventId=" + eventId + ", user=" + user
+		return "Event [eventId=" + eventId 
 				+ ", motivation=" + motivation + ", reaction=" + reaction
 				+ ", result=" + result + ", timestampBefore=" + timestampBefore
 				+ ", timestampAfter=" + timestampAfter + ", isDone=" + isDone + "]";

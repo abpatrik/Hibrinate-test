@@ -19,7 +19,7 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private Boolean authorised;
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="user")
 	private Collection<Event> events;
 	
 	public User() {
@@ -91,8 +91,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", authorised=" + authorised
-				+ ", events=" + events + "]";
+				+ ", lastname=" + lastname + ", authorised=" + authorised;
 	}
 
 }
