@@ -15,9 +15,14 @@ public class UserHandler {
 
 	private DatabaseHandler db = DatabaseHandler.getInstance();
 
-	public User find(String email) {
+	public User findById(Long id) {
 
-		return db.findUser(email);
+		return db.findUserById(id);
+	}
+	
+	public User findByEmail(String email) {
+
+		return db.findUserByEmail(email);
 	}
 
 	public boolean add(User user) {
@@ -33,6 +38,7 @@ public class UserHandler {
 
 		db.updateUser(user);
 	}
+
 	public boolean sendAuthorisationLink(String to, String name){
 
 		String messageText = "Hi "+ name + "\nTo activate your account, follow this link:\n\n"
@@ -70,5 +76,3 @@ public class UserHandler {
 		return true;
 	}
 }
-
-

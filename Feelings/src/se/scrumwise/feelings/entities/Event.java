@@ -19,11 +19,11 @@ public class Event {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long eventId;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
-	
+	private String meetingType;
 	private byte motivation;
 	private byte reaction;
 	private byte result;
@@ -33,7 +33,7 @@ public class Event {
 
 	public Event(User user, byte motivation, byte reaction,
 			byte result, Date timestampBefore, Date timestampAfter,
-			Boolean isDone) {
+			Boolean isDone, String meetingType) {
 
 		this.user = user;
 		this.motivation = motivation;
@@ -42,7 +42,7 @@ public class Event {
 		this.timestampBefore = timestampBefore;
 		this.timestampAfter = timestampAfter;
 		this.isDone = isDone;
-		
+		this.meetingType = meetingType;
 	}
 	public Event() {
 
@@ -53,7 +53,7 @@ public class Event {
 	public void setEventId(Long eventId) {
 		this.eventId = eventId;
 	}
-	
+
 	public byte getMotivation() {
 		return motivation;
 	}
@@ -91,13 +91,24 @@ public class Event {
 		this.isDone = isDone;
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public String getMeetingType() {
+		return meetingType;
+	}
+	public void setMeetingType(String meetingType) {
+		this.meetingType = meetingType;
+	}
+	
 	@Override
 	public String toString() {
 		return "Event [eventId=" + eventId 
 				+ ", motivation=" + motivation + ", reaction=" + reaction
 				+ ", result=" + result + ", timestampBefore=" + timestampBefore
-				+ ", timestampAfter=" + timestampAfter + ", isDone=" + isDone + "]";
+				+ ", timestampAfter=" + timestampAfter + ", isDone=" + isDone +  ", userId " + user.getUserId() +  "]";
 	}
-
 }
-
